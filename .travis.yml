@@ -1,0 +1,31 @@
+lang: ruby
+sudo: required
+dist: trusty
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+before_install:
+  - gem install bundler --pre
+  - export CXX="g++-4.8"
+install:
+  - gem update --system
+  - bundle update
+rvm:
+  - 2.2.6
+  - 2.3.3
+  - 2.4.0-preview3
+  - jruby
+  - rbx
+notifications:
+  recipients:
+    - namusyaka@gmail.com
+branches:
+  only:
+    - master
+matrix:
+  allow_failures:
+    - rvm: rbx
+    - rvm: jruby
